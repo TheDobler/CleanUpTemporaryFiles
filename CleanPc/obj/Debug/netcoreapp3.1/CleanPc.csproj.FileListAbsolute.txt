@@ -1,0 +1,26 @@
+C:\Users\Doble\source\repos\CleanPc_Solution\CleanPc\bin\Debug\netcoreapp3.1\CleanPc.exe
+C:\Users\Doble\source\repos\CleanPc_Solution\CleanPc\bin\Debug\netcoreapp3.1\CleanPc.deps.json
+C:\Users\Doble\source\repos\CleanPc_Solution\CleanPc\bin\Debug\netcoreapp3.1\CleanPc.runtimeconfig.json
+C:\Users\Doble\source\repos\CleanPc_Solution\CleanPc\bin\Debug\netcoreapp3.1\CleanPc.runtimeconfig.dev.json
+C:\Users\Doble\source\repos\CleanPc_Solution\CleanPc\bin\Debug\netcoreapp3.1\CleanPc.dll
+C:\Users\Doble\source\repos\CleanPc_Solution\CleanPc\bin\Debug\netcoreapp3.1\CleanPc.pdb
+C:\Users\Doble\source\repos\CleanPc_Solution\CleanPc\obj\Debug\netcoreapp3.1\CleanPc.csprojAssemblyReference.cache
+C:\Users\Doble\source\repos\CleanPc_Solution\CleanPc\obj\Debug\netcoreapp3.1\CleanPc.AssemblyInfoInputs.cache
+C:\Users\Doble\source\repos\CleanPc_Solution\CleanPc\obj\Debug\netcoreapp3.1\CleanPc.AssemblyInfo.cs
+C:\Users\Doble\source\repos\CleanPc_Solution\CleanPc\obj\Debug\netcoreapp3.1\CleanPc.csproj.CoreCompileInputs.cache
+C:\Users\Doble\source\repos\CleanPc_Solution\CleanPc\obj\Debug\netcoreapp3.1\CleanPc.dll
+C:\Users\Doble\source\repos\CleanPc_Solution\CleanPc\obj\Debug\netcoreapp3.1\CleanPc.pdb
+C:\Users\Doble\source\repos\CleanPc_Solution\CleanPc\obj\Debug\netcoreapp3.1\CleanPc.genruntimeconfig.cache
+C:\Users\Eirik Døble\source\repos\CleanPc_Solution\CleanPc\bin\Debug\netcoreapp3.1\CleanPc.exe
+C:\Users\Eirik Døble\source\repos\CleanPc_Solution\CleanPc\bin\Debug\netcoreapp3.1\CleanPc.deps.json
+C:\Users\Eirik Døble\source\repos\CleanPc_Solution\CleanPc\bin\Debug\netcoreapp3.1\CleanPc.runtimeconfig.json
+C:\Users\Eirik Døble\source\repos\CleanPc_Solution\CleanPc\bin\Debug\netcoreapp3.1\CleanPc.runtimeconfig.dev.json
+C:\Users\Eirik Døble\source\repos\CleanPc_Solution\CleanPc\bin\Debug\netcoreapp3.1\CleanPc.dll
+C:\Users\Eirik Døble\source\repos\CleanPc_Solution\CleanPc\bin\Debug\netcoreapp3.1\CleanPc.pdb
+C:\Users\Eirik Døble\source\repos\CleanPc_Solution\CleanPc\obj\Debug\netcoreapp3.1\CleanPc.csproj.AssemblyReference.cache
+C:\Users\Eirik Døble\source\repos\CleanPc_Solution\CleanPc\obj\Debug\netcoreapp3.1\CleanPc.AssemblyInfoInputs.cache
+C:\Users\Eirik Døble\source\repos\CleanPc_Solution\CleanPc\obj\Debug\netcoreapp3.1\CleanPc.AssemblyInfo.cs
+C:\Users\Eirik Døble\source\repos\CleanPc_Solution\CleanPc\obj\Debug\netcoreapp3.1\CleanPc.csproj.CoreCompileInputs.cache
+C:\Users\Eirik Døble\source\repos\CleanPc_Solution\CleanPc\obj\Debug\netcoreapp3.1\CleanPc.dll
+C:\Users\Eirik Døble\source\repos\CleanPc_Solution\CleanPc\obj\Debug\netcoreapp3.1\CleanPc.pdb
+C:\Users\Eirik Døble\source\repos\CleanPc_Solution\CleanPc\obj\Debug\netcoreapp3.1\CleanPc.genruntimeconfig.cache

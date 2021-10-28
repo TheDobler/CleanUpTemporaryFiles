@@ -1,0 +1,45 @@
+﻿
+
+Mål for prosjektet:
+	[OK] Slette alt som ikke er i bruk i temp mappen
+	[OK] Slette alt som ikke er i bruk i %temp% mappen
+	[OK] Slette alt som ikke er i bruk i prefetch mappen
+	[] Kjøre Disk Cleanup programet med utvalgte/bestemmte innstillinger. 
+		(Med systemfiler)
+	[] Kjøre Disk Cleanup programet med utvalgte/bestemmte innstillinger.
+		(Uten systemfiler)
+	[] Ta en restart på maskinen (Skal være valgfritt)
+	[] Programmet skal kun brukes i console vinduet.
+	[] Programmet skal kunne ta i mot parametere som for evt restart av pc.
+
+Gjøre liste:
+	[OK]	Navigere til riktig mappe.
+	[OK]	Lese alle filer og mapper
+	[OK]	Slette alle filer utenom de som er i bruk
+	[OK]	Kjøre DiskCleanUp programmet
+	[]	Kjøre DiskCleanUp programmet med bestemte valg
+	[]	Kjøre DiskCleanUp programmet med systemfiler
+	[]	Kjøre DiskCleanUp programmet med systemfiler og bestemte valg
+	[]	Lese argumenter fra powershell
+	[]	Restarte maskinen og eventuelt gi en tilbakemelding om at programmet er ferdig kjørt
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+Klasse fordeling / Interface fordeling:
+	[]	Program - Connect all togheter
+	[]	Communication - Communication with windows program like "Disk CleanUp"
+	[]	ModifyFiles - Find the right path and read all files and delete files that are not in use.
+	[]	SystemHandling - Handling the popubox for admin password and handling the restart of the computer.
+	[]	
+
+Ting som MÅ være med:
+	[X] Constructor
+	[] Interface
+	[] Properties
+	[] Events
+	[] Delegate
+	[OK] list
+	[] Inheratence (Polymorphism)
+	[] Override / Virtual
+	[] Abstract
+	[] Classes / Objects
+	 
