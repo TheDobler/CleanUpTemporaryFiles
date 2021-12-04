@@ -4,7 +4,7 @@ using System.Security.Principal;
 
 namespace CleanPc
 {
-    class Program
+    class Program : ModifyFiles
     {
         static void Main(string[] args)
         {
@@ -14,26 +14,32 @@ namespace CleanPc
             string _prefetch = @"C:\Windows\Prefetch"; //Prefetch
 
             ModifyFiles mf = new ModifyFiles();
+            Program program = new Program();
 
-            List<string> temp = ModifyFiles.getFilesAndDirectory(_temp);
-            List<string> TEMP = ModifyFiles.getFilesAndDirectory(_TEMP);
-            List<string> prefetch = ModifyFiles.getFilesAndDirectory(_prefetch);
+            List<string> temp = program.getFilesAndDirectory(_temp);
+            List<string> TEMP = program.getFilesAndDirectory(_TEMP);
+            List<string> prefetch = program.getFilesAndDirectory(_prefetch);
 
             try
             {
-                Console.WriteLine("temp folder: \n");
-                //mf.writeToConsole(temp);
+                if (temp.Count != 0)
+                {
+                    Console.WriteLine("temp folder: \n");
+                    mf.writeToConsole(temp);
+                }
+                   
                 if (TEMP.Count != 0)
                 {
                     Console.WriteLine("\n %temp% folder: \n");
                     mf.writeToConsole(TEMP);
                 }
-                //mf.Delete(TEMP);
+                mf.Delete(TEMP);
 
-
-                //Console.WriteLine("\n prefetch folder: \n");
-                //mf.writeToConsole(prefetch);
-
+                if (prefetch.Count != 0)
+                {
+                    Console.WriteLine("\n prefetch folder: \n");
+                    mf.writeToConsole(prefetch);
+                }
             }
             catch (Exception e)
             {

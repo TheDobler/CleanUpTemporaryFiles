@@ -8,10 +8,10 @@ using System.Linq;
 namespace CleanPc
 {
 
-    public class ModifyFiles
+    class ModifyFiles
     {
         
-        public static List<string> getFilesAndDirectory(string path)
+        protected List<string> getFilesAndDirectory(string path)
         {
            List<string> FilesAndDirectories = new List<string>();
             
