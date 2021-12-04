@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "IIVK9wWioURYLIJ9s0Bx3T8uw1Tj6LkT3NHuhqK4nGTd0J8y4YS8pr2fLP1nUjwyXtEYRA5M4DpK0NMxNUygNw==",
+  "dgSpecHash": "jmOLOfKv/1kFULrABGexj+1VEoN4UV4Vq+YW2XmBp9wZEJtZBs9skiVIaiHrAZbZ0GcF0h36RGvZdehYlS6nrQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Eirik Døble\\source\\repos\\CleanPc_Solution\\CleanPc\\CleanPc.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Eirik Døble\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
     "C:\\Users\\Eirik Døble\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.18\\microsoft.netcore.app.host.win-x64.3.1.18.nupkg.sha512"
   ],
   "logs": []

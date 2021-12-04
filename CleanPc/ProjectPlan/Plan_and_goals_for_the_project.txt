@@ -12,6 +12,7 @@ Mål for prosjektet:
 	[] Programmet skal kun brukes i console vinduet.
 	[] Programmet skal kunne ta i mot parametere som for evt restart av pc.
 
+
 Gjøre liste:
 	[OK]	Navigere til riktig mappe.
 	[OK]	Lese alle filer og mapper
@@ -22,6 +23,8 @@ Gjøre liste:
 	[]	Kjøre DiskCleanUp programmet med systemfiler og bestemte valg
 	[]	Lese argumenter fra powershell
 	[]	Restarte maskinen og eventuelt gi en tilbakemelding om at programmet er ferdig kjørt
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 Klasse fordeling / Interface fordeling:

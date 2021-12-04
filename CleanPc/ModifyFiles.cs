@@ -10,20 +10,10 @@ namespace CleanPc
 
     public class ModifyFiles
     {
-        private string temp;
-        private string TempP;
-        private string prefetch;
-
-        public ModifyFiles(string _temp, string _TempP, string _prefetch)
-        {
-            temp = _temp;
-            TempP = _TempP;
-            prefetch = _prefetch;
-        }
         
         public static List<string> getFilesAndDirectory(string path)
         {
-            List<string> FilesAndDirectories = new List<string>();
+           List<string> FilesAndDirectories = new List<string>();
             
                 if (Directory.Exists(path))
                 {
@@ -37,12 +27,13 @@ namespace CleanPc
                 }
                 else
                 {
-                    Console.WriteLine("The directory does not exist!");
+                    Console.WriteLine("The directory does not exist!, try another path..");
                     return new List<string>();
                 }
             return FilesAndDirectories;
         }
-        public void delete(List<string> data)
+        
+        public void Delete(List<string> data)
         {
             List<string> exceptions = new List<string>();
             FileAttributes attr; 
