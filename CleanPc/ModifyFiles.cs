@@ -17,13 +17,21 @@ namespace CleanPc
             
                 if (Directory.Exists(path))
                 {
-                    FilesAndDirectories.AddRange(Directory.GetFiles(
-                    path, "*", SearchOption.TopDirectoryOnly));
+                    try
+                    {
+                        FilesAndDirectories.AddRange(Directory.GetFiles(
+                        path, "*", SearchOption.TopDirectoryOnly));
 
-                    FilesAndDirectories.AddRange(
-                        Directory.GetDirectories(
-                        path, "*", SearchOption.TopDirectoryOnly)
-                        );
+                        FilesAndDirectories.AddRange(
+                            Directory.GetDirectories(
+                            path, "*", SearchOption.TopDirectoryOnly)
+                            );
+                    }
+                    catch (Exception)
+                    {
+                        throw new UnauthorizedAccessException();
+                    }
+
                 }
                 else
                 {
@@ -59,11 +67,12 @@ namespace CleanPc
                 }
             }
             Console.WriteLine("\n Here is a list of files that could not be deleted: \n");
+            int i = 0;
             foreach (var item in exceptions)
             {
-                Console.WriteLine("* " + item +"\n");
+                i++;
+                Console.WriteLine(i+ ": " + item +"\n");
             }
-            
         }
 
         public void openFileAndFolder(string path, string action = "open")
@@ -80,7 +89,7 @@ namespace CleanPc
             foreach (var item in data)
             {
                 FileInfo info = new FileInfo(item);
-                Console.WriteLine(info.Name);
+                Console.WriteLine(" " + info.Name);
             }
         }
     }

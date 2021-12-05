@@ -16,9 +16,22 @@ namespace CleanPc
             ModifyFiles mf = new ModifyFiles();
             Program program = new Program();
 
-            List<string> temp = program.getFilesAndDirectory(_temp);
-            List<string> TEMP = program.getFilesAndDirectory(_TEMP);
-            List<string> prefetch = program.getFilesAndDirectory(_prefetch);
+            List<string> temp = null;
+            List<string> TEMP = null;
+            List<string> prefetch = null;
+
+            try
+            {
+                temp = program.getFilesAndDirectory(_temp);
+                TEMP = program.getFilesAndDirectory(_TEMP);
+                prefetch = program.getFilesAndDirectory(_prefetch);
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                Console.WriteLine("It's working!!");
+                Console.WriteLine(e); //.GetType().Name);
+            }
+           
 
             try
             {
@@ -27,18 +40,29 @@ namespace CleanPc
                     Console.WriteLine("temp folder: \n");
                     mf.writeToConsole(temp);
                 }
+                else
+                {
+                    Console.WriteLine("The folder is empty!");
+                }
                    
                 if (TEMP.Count != 0)
                 {
                     Console.WriteLine("\n %temp% folder: \n");
                     mf.writeToConsole(TEMP);
                 }
-                mf.Delete(TEMP);
+                else
+                {
+                    Console.WriteLine("The folder is empty!");
+                }
 
                 if (prefetch.Count != 0)
                 {
                     Console.WriteLine("\n prefetch folder: \n");
                     mf.writeToConsole(prefetch);
+                }
+                else
+                {
+                    Console.WriteLine("The folder is empty!");
                 }
             }
             catch (Exception e)
