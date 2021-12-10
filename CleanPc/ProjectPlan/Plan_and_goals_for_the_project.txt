@@ -37,7 +37,7 @@ Klasse fordeling / Interface fordeling:
 Ting som MÅ være med:
 	[X] Constructor
 	[] Interface
-	[] Properties
+	[X] Properties
 	[] Events
 	[] Delegate
 	[OK] list

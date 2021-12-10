@@ -4,15 +4,16 @@ using System.Text;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.ComponentModel;
 
 namespace CleanPc
 {
 
     class ModifyFiles
     {
-        
         protected List<string> getFilesAndDirectory(string path)
         {
+            //Get all files and folder that is not in use or does not need admin rights.
            List<string> FilesAndDirectories = new List<string>();
             
                 if (Directory.Exists(path))
@@ -27,22 +28,28 @@ namespace CleanPc
                             path, "*", SearchOption.TopDirectoryOnly)
                             );
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
-                        throw new UnauthorizedAccessException();
+                        if (e is UnauthorizedAccessException)
+                        {
+                            throw new UnauthorizedAccessException();
+                        }
+                        else
+                        {
+                            throw new Exception();
+                        }
                     }
-
                 }
                 else
                 {
-                    Console.WriteLine("The directory does not exist!, try another path..");
                     return new List<string>();
                 }
             return FilesAndDirectories;
         }
         
-        public void Delete(List<string> data)
+        public List <string> Delete(List<string> data)
         {
+            //Delete all files in the list. Files that cannot be deleted are added to a new list that is returned.
             List<string> exceptions = new List<string>();
             FileAttributes attr; 
             foreach (var item in data)
@@ -50,6 +57,7 @@ namespace CleanPc
                 try
                 {
                     attr = File.GetAttributes(item);
+                    Console.WriteLine(attr.ToString());
                     if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
                     {
                         Directory.Delete(item, true);
@@ -65,32 +73,12 @@ namespace CleanPc
                     exceptions.Add(ex.Message);
                     continue;
                 }
+
             }
-            Console.WriteLine("\n Here is a list of files that could not be deleted: \n");
-            int i = 0;
-            foreach (var item in exceptions)
-            {
-                i++;
-                Console.WriteLine(i+ ": " + item +"\n");
-            }
+            return exceptions;
         }
 
-        public void openFileAndFolder(string path, string action = "open")
-        {
-            Process.Start(new ProcessStartInfo()
-            {
-                FileName = path,
-                UseShellExecute = true,
-                Verb = action
-            });
-        }
-        public void writeToConsole(List<string> data)
-        {
-            foreach (var item in data)
-            {
-                FileInfo info = new FileInfo(item);
-                Console.WriteLine(" " + info.Name);
-            }
-        }
+       
+       
     }
 }
