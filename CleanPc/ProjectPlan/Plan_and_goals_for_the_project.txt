@@ -29,19 +29,6 @@ Gjøre liste:
 	[]	Restarte maskinen og eventuelt gi en tilbakemelding om at programmet er ferdig kjørt
 
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-Klasse fordeling / Interface fordeling:
-
-	[]	Program - Connect all togheter
-	[]	Communication - Communication with windows program like "Disk CleanUp"
-	[]	ModifyFiles - Find the right path and read all files and delete files that are not in use.
-	[]	SystemHandling - Handling the popubox for admin password and handling the restart of the computer.
-	[]	
-
 Ting som MÅ være med:
 
 	[X] Constructor

@@ -6,6 +6,12 @@ namespace CleanPc
 {
     class LogFile
     {
+        private string path = "C:\\";
 
+        public LogFile()
+        {
+            //Creates a new log file
+
+        }
     }
 }
