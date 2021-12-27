@@ -1,6 +1,8 @@
 ﻿
 
 Mål for prosjektet:
+
+	[]	 Skal settes slik at det maa kjores som admin
 	[OK] Slette alt som ikke er i bruk i temp mappen
 	[OK] Slette alt som ikke er i bruk i %temp% mappen
 	[OK] Slette alt som ikke er i bruk i prefetch mappen
@@ -11,9 +13,11 @@ Mål for prosjektet:
 	[] Ta en restart på maskinen (Skal være valgfritt)
 	[] Programmet skal kun brukes i console vinduet.
 	[] Programmet skal kunne ta i mot parametere som for evt restart av pc.
-
+	[] Programmet skal lage en log fil for alt den har gjort. Det skal printes ut hva som er slettet, hva som ikke er slettet og hva som gikk galt.
+		For at ikke det skal bli saa mange filer, skal den slette forrige fil slik at det er kun en fil som blir lagret og det er alltid den nyeste.
 
 Gjøre liste:
+
 	[OK]	Navigere til riktig mappe.
 	[OK]	Lese alle filer og mapper
 	[OK]	Slette alle filer utenom de som er i bruk
@@ -27,7 +31,11 @@ Gjøre liste:
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 Klasse fordeling / Interface fordeling:
+
 	[]	Program - Connect all togheter
 	[]	Communication - Communication with windows program like "Disk CleanUp"
 	[]	ModifyFiles - Find the right path and read all files and delete files that are not in use.
@@ -35,6 +43,7 @@ Klasse fordeling / Interface fordeling:
 	[]	
 
 Ting som MÅ være med:
+
 	[X] Constructor
 	[] Interface
 	[X] Properties

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
 
 namespace CleanPc
 {
-    interface IWriteToConsole
+    class LogFile
     {
-        void WriteToConsole(List<string> data);
+
     }
 }

@@ -6,77 +6,38 @@ using System.Security.Principal;
 
 namespace CleanPc
 {
-    class Program : ModifyFiles, IWriteToConsole
+    class Program : GetFilesAndDirectory, IWriteToConsole
     {
         static void Main(string[] args)
         {
             string userName = UserName;
-            //string _temp = @"C:\Windows\Temp"; //Temp
-            string _TEMP = $@"C:\Users\{userName}\AppData\Local\Temp"; //%temp%
-            //string _prefetch = @"C:\Windows\Prefetch"; //Prefetch
+            string Temp = @"C:\Windows\Temp"; //Temp
+            string temp = $@"C:\Users\{userName}\AppData\Local\Temp"; //%temp%
+            //string prefetch = @"C:\Windows\Prefetch"; //Prefetch
 
-            ModifyFiles mf = new ModifyFiles();
+            
             Program program = new Program();
 
-            //List<string> temp = null;
-            List<string> TEMP = null;
-            //List<string> prefetch = null;
+            List<string> _Temp = null;
+            List<string> _temp = null;
+            //List<string> _prefetch = null;
+            
+            _Temp = program.AddToList();
+            _temp = program.AddToList();
+            //_prefetch = program.getFilesAndDirectory(prefetch);
 
-            try
-            {
-                //temp = program.getFilesAndDirectory(_temp);
-                TEMP = program.getFilesAndDirectory(_TEMP);
-                //prefetch = program.getFilesAndDirectory(_prefetch);
-            }
-            catch (UnauthorizedAccessException e)
-            {
-                Console.WriteLine(e);
-            }
-           
-
-            try
-            {
-                //if (temp.Count != 0)
-                //{
-                //    Console.WriteLine("temp folder: \n");
-                //    mf.writeToConsole(temp);
-                //}
-                //else
-                //{
-                //    Console.WriteLine("The folder is empty!");
-                //}
-                   
-                if (TEMP.Count != 0)
-                {
-                    Console.WriteLine("\n %temp% folder: \n");
-
-
-                    writeToConsole(TEMP);
-                    mf.Delete(TEMP);
-                }
-                else
-                {
-                    Console.WriteLine("The folder is empty!");
-                }
-
-                //if (prefetch.Count != 0)
-                //{
-                //    Console.WriteLine("\n prefetch folder: \n");
-                //    mf.writeToConsole(prefetch);
-                //}
-                //else
-                //{
-                //    Console.WriteLine("The folder is empty!");
-                //}
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("[IN PROGRAM.CS] - " + e + "\n");
-            }
-         }
+            IWriteToConsole writeToConsole = new Program();
+            writeToConsole.WriteToConsole(_temp);
+            Console.WriteLine();
+            Console.WriteLine();
+            writeToConsole.WriteToConsole(_Temp);
+            //Console.WriteLine();
+            //Console.WriteLine();
+            //writeToConsole.WriteToConsole(_prefetch);
+        }
 
         //Retrieves the username of the currently logged in user
-        static string UserName
+        private static string UserName
         {
             get
             {
@@ -86,12 +47,13 @@ namespace CleanPc
             }
         }
 
-        public void WriteToConsole(List<string> data)
+        void IWriteToConsole.WriteToConsole(List<string> data)
         {
+            int i = 0;
             foreach (var item in data)
             {
                 FileInfo info = new FileInfo(item);
-                Console.WriteLine(" " + info.Name);
+                Console.WriteLine( ++i + " " + info.Name);
             }
         }
 
