@@ -18,16 +18,15 @@ namespace CleanPc
             
         }
 
-        FileAttributes attr;
-
-        private List<string> Delete()
+        public void Delete()
         {
+            FileAttributes attr;
             foreach (string item in files)
             {
                 try
                 {
                     attr = File.GetAttributes(item);
-                    //Console.WriteLine(attr.ToString());
+                    
                     if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
                     {
                         Directory.Delete(item, true);
@@ -45,7 +44,6 @@ namespace CleanPc
                 }
 
             }
-            return exceptionList;
         }
     }
 }

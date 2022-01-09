@@ -6,36 +6,8 @@ using System.Security.Principal;
 
 namespace CleanPc
 {
-    class Program : GetFilesAndDirectory, IWriteToConsole
+    class Program : IWriteToConsole
     {
-        static void Main(string[] args)
-        {
-            string userName = UserName;
-            string Temp = @"C:\Windows\Temp"; //Temp
-            string temp = $@"C:\Users\{userName}\AppData\Local\Temp"; //%temp%
-            //string prefetch = @"C:\Windows\Prefetch"; //Prefetch
-
-            
-            Program program = new Program();
-
-            List<string> _Temp = null;
-            List<string> _temp = null;
-            //List<string> _prefetch = null;
-            
-            _Temp = program.AddToList();
-            _temp = program.AddToList();
-            //_prefetch = program.getFilesAndDirectory(prefetch);
-
-            IWriteToConsole writeToConsole = new Program();
-            writeToConsole.WriteToConsole(_temp);
-            Console.WriteLine();
-            Console.WriteLine();
-            writeToConsole.WriteToConsole(_Temp);
-            //Console.WriteLine();
-            //Console.WriteLine();
-            //writeToConsole.WriteToConsole(_prefetch);
-        }
-
         //Retrieves the username of the currently logged in user
         private static string UserName
         {
@@ -46,6 +18,45 @@ namespace CleanPc
                 return UserName.Substring(index + 1);
             }
         }
+
+        private string _Temp = @"C:\Windows\Temp"; //Temp;
+        public string Temp{get { return _Temp; }}
+
+        private string _temp = $@"C:\Users\{UserName}\AppData\Local\Temp"; //%temp%;
+        public string temp{ get{return _temp;}}
+
+        private string _prefetch = @"C:\Windows\Prefetch"; //Prefetch
+        public string prefetch { get { return _prefetch; } }
+
+
+        static void Main(string[] args)
+        {
+            if (File.Exists(LogFile.PathString))
+            {
+                File.Delete(LogFile.PathString);
+            }
+            LogFile log = new LogFile();
+            Program p = new Program();
+            //string userName = UserName;
+            //string Temp = @"C:\Windows\Temp"; //Temp
+            //string temp = $@"C:\Users\{userName}\AppData\Local\Temp"; //%temp%
+            //string prefetch = @"C:\Windows\Prefetch"; //Prefetch
+
+            //var GetTemp = new GetFilesAndDirectory(p.Temp); //Temp
+            var GetTemp = new GetFilesAndDirectory(""); //Temp
+
+            //var _GetTemp = new GetFilesAndDirectory(p.temp); //%temp%
+            //var GetPrefetch = new GetFilesAndDirectory(p.prefetch); //Preftech
+
+            new DeleteAllFiles(GetTemp.AddToList()).Delete(); //Add to list and delete files and directory inside Temp folder. 
+            //new DeleteAllFiles(_GetTemp.AddToList()).Delete(); //Add to list and delete files and directory inside %temp% folder.
+            //new DeleteAllFiles(GetPrefetch.AddToList()).Delete(); //Add to list and delete files and directory inside Preftech folder.
+
+
+            Console.WriteLine("We're done, you've fired!");
+        }
+
+
 
         void IWriteToConsole.WriteToConsole(List<string> data)
         {
