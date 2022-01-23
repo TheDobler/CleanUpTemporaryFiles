@@ -8,14 +8,12 @@ namespace CleanPc
     class DeleteAllFiles
     {
         //Delete all files in the list. Files that cannot be deleted are added to a new list that is returned.
-
+        LogFile log = new LogFile();
         List<string> files = new List<string>();
-        List<string> exceptionList = new List<string>();
 
         public DeleteAllFiles(List<string> data)
         {
             files = data;
-            
         }
 
         public void Delete()
@@ -35,15 +33,17 @@ namespace CleanPc
                     {
                         File.Delete(item);
                     }
-                    Console.WriteLine($"{item} was deleted!"); //Writing to log file
+                    //deletedList.Add(($"{item} was deleted!"));
+                    log.WritesToLog(($"{item} was deleted!"));
                 }
                 catch (Exception ex)
                 {
-                    exceptionList.Add(ex.Message); //Writing to log file
+                    log.WritesToLog(ex.Message); //Writing to log file
                     continue;
                 }
 
             }
+
         }
     }
 }

@@ -4,6 +4,14 @@ using System.Diagnostics;
 using System.IO;
 using System.Security.Principal;
 
+
+/// <summary>
+/// 1. Skrive ut stien til loggfilen om hvor filen ligger - Console.WriteLine("Path to my file: {0}\n", pathString);
+/// 
+/// </summary>
+
+
+
 namespace CleanPc
 {
     class Program : IWriteToConsole
@@ -18,7 +26,6 @@ namespace CleanPc
                 return UserName.Substring(index + 1);
             }
         }
-
         private string _Temp = @"C:\Windows\Temp"; //Temp;
         public string Temp{get { return _Temp; }}
 
@@ -28,23 +35,20 @@ namespace CleanPc
         private string _prefetch = @"C:\Windows\Prefetch"; //Prefetch
         public string prefetch { get { return _prefetch; } }
 
+        
 
         static void Main(string[] args)
         {
-            if (File.Exists(LogFile.PathString))
-            {
-                File.Delete(LogFile.PathString);
-            }
+            if (File.Exists(LogFile.LogPath)) File.Delete(LogFile.LogPath);
             LogFile log = new LogFile();
             Program p = new Program();
-            //string userName = UserName;
-            //string Temp = @"C:\Windows\Temp"; //Temp
-            //string temp = $@"C:\Users\{userName}\AppData\Local\Temp"; //%temp%
-            //string prefetch = @"C:\Windows\Prefetch"; //Prefetch
 
-            //var GetTemp = new GetFilesAndDirectory(p.Temp); //Temp
-            var GetTemp = new GetFilesAndDirectory(""); //Temp
+            log.CreateFolderIfNotExist();
+            log.WritesToLog("CleanPC Solution!" + "\nDate run " + DateTime.Now.ToString() + "\n");
+            openFileAndFolder(p.Temp);
 
+            //var GetTemp = new GetFilesAndDirectory("");
+            var GetTemp = new GetFilesAndDirectory(p.Temp); //Temp
             //var _GetTemp = new GetFilesAndDirectory(p.temp); //%temp%
             //var GetPrefetch = new GetFilesAndDirectory(p.prefetch); //Preftech
 
@@ -68,7 +72,7 @@ namespace CleanPc
             }
         }
 
-        public void openFileAndFolder(string path, string action = "open")
+        public static void openFileAndFolder(string path, string action = "open")
         {
             Process.Start(new ProcessStartInfo()
             {

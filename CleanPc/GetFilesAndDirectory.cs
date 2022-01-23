@@ -8,39 +8,29 @@ using System.ComponentModel;
 
 namespace CleanPc
 {
-    class GetFilesAndDirectory : LogFile
+    class GetFilesAndDirectory
     {
+
+        //Can remove this property because it is an public property in program class
         private string Path { get; }
         public GetFilesAndDirectory(string path)
         {
-            if (string.IsNullOrEmpty(path))
-            {
-                WritesToLog(" 1. cannot be null or empty1.");
-                Console.WriteLine($"1 . '{nameof(path)}' cannot be null or empty.");
-                WritesToLog("1");
-                Console.WriteLine("1");
-                WritesToLog("2");
-                Console.WriteLine("2");
-                WritesToLog("3");
-                Console.WriteLine("3");
-                WritesToLog("4");
-                Console.WriteLine("4");
-
-            }
-
             Path = path;
         }
-
         public List<string> AddToList()
         {
             //Get all files and folder that is not in use or does not need admin rights.
             var FilesAndDirectories = new List<string>();
+            LogFile log = new LogFile();
 
             if (!Directory.Exists(Path))
             {
-                WritesToLog("The folder does not exist23!");
-                Console.WriteLine("The folder does not exist23!");
-
+                if (string.IsNullOrEmpty(Path))
+                {
+                    log.WritesToLog(" The path cannot be null or empty!");
+                    return new List<string>(); ;
+                }
+                log.WritesToLog("The folder does not exist!");
                 return new List<string>();
             }
             else
@@ -57,8 +47,7 @@ namespace CleanPc
                 }
                 catch (Exception e)
                 {
-                    WritesToLog("2. " + e.Message);
-                    Console.WriteLine("2. " + e.Message);
+                    log.WritesToLog(e.Message);
                 }
             }
             return FilesAndDirectories;
