@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Security.Principal;
+
 
 
 /// <summary>
@@ -16,24 +16,8 @@ namespace CleanPc
 {
     class Program : IWriteToConsole
     {
-        //Retrieves the username of the currently logged in user
-        private static string UserName
-        {
-            get
-            {
-                string UserName = WindowsIdentity.GetCurrent().Name;
-                int index = UserName.IndexOf("\\");
-                return UserName.Substring(index + 1);
-            }
-        }
-        private string _Temp = @"C:\Windows\Temp"; //Temp;
-        public string Temp{get { return _Temp; }}
-
-        private string _temp = $@"C:\Users\{UserName}\AppData\Local\Temp"; //%temp%;
-        public string temp{ get{return _temp;}}
-
-        private string _prefetch = @"C:\Windows\Prefetch"; //Prefetch
-        public string prefetch { get { return _prefetch; } }
+        
+        
 
         
 
@@ -52,15 +36,40 @@ namespace CleanPc
             //var _GetTemp = new GetFilesAndDirectory(p.temp); //%temp%
             //var GetPrefetch = new GetFilesAndDirectory(p.prefetch); //Preftech
 
-            new DeleteAllFiles(GetTemp.AddToList()).Delete(); //Add to list and delete files and directory inside Temp folder. 
-            //new DeleteAllFiles(_GetTemp.AddToList()).Delete(); //Add to list and delete files and directory inside %temp% folder.
-            //new DeleteAllFiles(GetPrefetch.AddToList()).Delete(); //Add to list and delete files and directory inside Preftech folder.
-
 
             Console.WriteLine("We're done, you've fired!");
         }
 
+        public void Delete(List<string> files)
+        {
+            LogFile log = new LogFile();
+            FileAttributes attr;
+            foreach (string item in files)
+            {
+                try
+                {
+                    attr = File.GetAttributes(item);
 
+                    if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                    {
+                        Directory.Delete(item, true);
+                    }
+                    else
+                    {
+                        File.Delete(item);
+                    }
+                    //deletedList.Add(($"{item} was deleted!"));
+                    log.WritesToLog(($"{item} was deleted!"));
+                }
+                catch (Exception ex)
+                {
+                    log.WritesToLog(ex.Message); //Writing to log file
+                    continue;
+                }
+
+            }
+
+        }
 
         void IWriteToConsole.WriteToConsole(List<string> data)
         {

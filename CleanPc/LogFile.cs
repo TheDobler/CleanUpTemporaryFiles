@@ -13,11 +13,6 @@ namespace CleanPc
         private static readonly string _LogPath = Path.Combine(LogFilePath, LogFileName);
         public static string LogPath => _LogPath;
 
-        //public LogFile() //Have to finde a better solution here!!
-        //{
-        //    CreateFolderIfNotExist();
-        //}
-
         public void CreateFolderIfNotExist()
         {
             string[] list = LogFilePath.Split('\\');
