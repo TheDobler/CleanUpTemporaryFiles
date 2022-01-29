@@ -5,7 +5,7 @@ using System.IO;
 
 namespace CleanPc
 {
-    public class LogFile
+    public class LogFile : IWriteToConsole
     {
         public static string LogFilePath { get; set; } = @"C:\Users\Eirik Døble\Desktop\TestFolder\DiskCleanUpLog";
         public static string LogFileName { get; set; } = "DiskCleanUpLogFile.txt";
@@ -45,6 +45,20 @@ namespace CleanPc
             sw.WriteLine(text);
             sw.Close();
             
+        }
+        public void WriteToConsole(List<Temporary> data)
+        {
+            Console.WriteLine("-----------------------------Summary-------------------------------------");
+
+            foreach (var item in data)
+            {
+                Console.WriteLine($"For path '{item.tempPath}' it was {item.numOfDeletedFiles} successfully deleted files!");
+                Console.WriteLine($"{item.notDeletedList.Count} files was not deleted.");
+                Console.WriteLine($"To get more information go to the log file at {LogFile.LogPath}");
+                Console.WriteLine();
+
+            }
+            Console.WriteLine("-------------------------------------------------------------------------");
         }
     }
 }

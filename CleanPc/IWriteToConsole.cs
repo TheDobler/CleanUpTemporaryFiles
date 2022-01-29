@@ -7,6 +7,6 @@ namespace CleanPc
 {
     interface IWriteToConsole
     {
-        void WriteToConsole(List<string> data);
+        void WriteToConsole(List<Temporary> data);
     }
 }
