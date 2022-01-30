@@ -4,14 +4,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Security.Principal;
 
-
-/// <summary>
-/// 
-/// 
-/// </summary>
-
-
-
 namespace CleanPc
 {
     class Program
@@ -24,10 +16,10 @@ namespace CleanPc
             string Temp = @"C:\Windows\Temp";
             string PercentTemp = $@"C:\Users\{GetUserName()}\AppData\Local\Temp";
             string prefetch = @"C:\Windows\Prefetch";
-            List<Temporary> temporaries; //= new List<Temporary>()
+            List<Temporary> temporaries;
 
             string[] paths = {Temp, PercentTemp, prefetch };
-            //string[] paths = { Temp, PercentTemp };
+            
 
             if (File.Exists(LogFile.LogPath)) File.Delete(LogFile.LogPath);
 
