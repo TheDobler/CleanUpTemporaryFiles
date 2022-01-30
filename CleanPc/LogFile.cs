@@ -15,6 +15,7 @@ namespace CleanPc
 
         public void CreateFolderIfNotExist()
         {
+            //Creates a new folder with a log file if the folder does not already exist
             string[] list = LogFilePath.Split('\\');
             string _path = "";
             foreach (var item in list)
@@ -33,6 +34,7 @@ namespace CleanPc
         }
         public void WritesToLog(string text)
         {
+            //Writes to the log file
             if (File.Exists(LogPath))
             {
                 string textString = $"{text} \n";
@@ -48,7 +50,7 @@ namespace CleanPc
 
         public void WritesToLog(List<Temporary> tempText)
         {
-            
+            //Writes to the log file
             if (!File.Exists(LogPath))
             {
                 return;
@@ -102,6 +104,7 @@ namespace CleanPc
 
         public void WriteToConsole(List<Temporary> data)
         {
+            //Writes to the console window
             Console.WriteLine("-----------------------------Summary-------------------------------------");
 
             foreach (var item in data)

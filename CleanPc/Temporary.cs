@@ -11,9 +11,9 @@ namespace CleanPc
 {
     public class Temporary
     {
-        private string _tempPath;  //Temp;
+        private string _tempPath;  //Path for temporary files
         private List<string> _tempList = new List<string>(); //List of all files and folder in the temporary folder.
-        private List<string> _notDeletedList = new List<string>();
+        private List<string> _notDeletedList = new List<string>(); 
         private List<string> _DeletedList = new List<string>();
         private int _numOfDeletedFiles = 0;
 

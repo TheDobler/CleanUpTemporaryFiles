@@ -48,6 +48,7 @@ namespace CleanPc
 
         static List<Temporary> GetTemporary(string [] pathToFiles) 
         {
+            //Creates a list of Temporary objects, where each object is a folder such as C: \ Windows \ Temp
             Dictionary<int, List<string>> file_item = new Dictionary<int, List<string>>();
             List<Temporary> tempList = new List<Temporary>();
 
@@ -67,7 +68,8 @@ namespace CleanPc
 
         static void Delete(Temporary files)
         {
-            LogFile log = new LogFile();
+            //Deletes all files and folders that are not in use
+            //Logs in a log file what is and will not be deleted and all error messages.
             FileAttributes attr;
             int countDeletedFiles = 0;
             List<string> notDeleteFilesList = new List<string>();
@@ -91,20 +93,16 @@ namespace CleanPc
                         DeleteFilesList.Add($"{item} was successfully deleted!");
                         countDeletedFiles++;
                     }
-                    //log.WritesToLog(($"{item} was successfully deleted!"));
+                    
                 }
                 catch (Exception ex)
                 {
-                    //log.WritesToLog(ex.Message); //Writing to log file
-                    //notDeleteFilesList.Add(item);
                     notDeleteFilesList.Add(ex.Message);
                 }
             }
             files.numOfDeletedFiles = countDeletedFiles;
             files.notDeletedList = notDeleteFilesList;
             files.DeletedList = DeleteFilesList;
-
-            
         }
 
         static public List<string> GetTempFiles(string Path)
@@ -144,37 +142,6 @@ namespace CleanPc
             return new List<string>(FilesAndDirectories);
         }
 
-        static void Delete1(List<string> files)
-        {
-            LogFile log = new LogFile();
-            FileAttributes attr;
-            foreach (string item in files)
-            {
-                try
-                {
-                    attr = File.GetAttributes(item);
-
-                    if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
-                    {
-                        Directory.Delete(item, true);
-                    }
-                    else
-                    {
-                        File.Delete(item);
-                    }
-                    //deletedList.Add(($"{item} was deleted!"));
-                    log.WritesToLog(($"{item} was deleted!"));
-                }
-                catch (Exception ex)
-                {
-                    log.WritesToLog(ex.Message); //Writing to log file
-                    continue;
-                }
-
-            }
-
-        }
-
         public static string GetUserName()
         {
             //Retrieves the username of the currently logged in user
@@ -185,6 +152,7 @@ namespace CleanPc
 
         public static void openFileAndFolder(string path, string action = "open")
         {
+            //Opens a folder in the file explorer
             Process.Start(new ProcessStartInfo()
             {
                 FileName = path,
