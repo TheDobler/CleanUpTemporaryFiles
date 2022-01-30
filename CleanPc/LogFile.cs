@@ -44,8 +44,62 @@ namespace CleanPc
             StreamWriter sw = new StreamWriter(fs);
             sw.WriteLine(text);
             sw.Close();
+        }
+
+        public void WritesToLog(List<Temporary> tempText)
+        {
+            
+            if (!File.Exists(LogPath))
+            {
+                return;
+            }
+            StringBuilder sb = new StringBuilder();
+            
+            if (tempText != null)
+            {
+                for (int i = 0; i < tempText.Count; i++)
+                {
+                    int count = 1;
+                    sb.AppendLine(tempText[i].tempPath);
+                    if (tempText[i].DeletedList.Count == 0 | tempText[i].DeletedList == null)
+                    {
+                        sb.AppendLine("No files were deleted! ");
+                    }
+                    else
+                    {
+                        sb.AppendLine($"{tempText[i].numOfDeletedFiles} successful files were deleted!");
+                        sb.AppendLine("Deleted files: ");
+                        foreach (var deleted in tempText[i].DeletedList)
+                        {
+                            sb.AppendLine(count + " " + deleted);
+                            count++;
+                        }
+                        
+                    }
+                    
+                    count = 1;
+                    if (tempText[i].notDeletedList.Count == 0 | tempText[i].notDeletedList == null)
+                    {
+                        sb.AppendLine("All files were deleted!!");
+                    }
+                    else
+                    {
+                        sb.AppendLine("Undeleted files: ");
+                        foreach (var notDeleted in tempText[i].notDeletedList)
+                        {
+                            sb.AppendLine(count + " " + notDeleted);
+                            count++;
+                        }
+                        
+                    }
+                    sb.AppendLine("");
+                    File.AppendAllText(LogPath, sb.ToString());
+                    sb.Clear();
+                }
+            }
             
         }
+
         public void WriteToConsole(List<Temporary> data)
         {
             Console.WriteLine("-----------------------------Summary-------------------------------------");
@@ -54,10 +108,9 @@ namespace CleanPc
             {
                 Console.WriteLine($"For path '{item.tempPath}' it was {item.numOfDeletedFiles} successfully deleted files!");
                 Console.WriteLine($"{item.notDeletedList.Count} files was not deleted.");
-                Console.WriteLine($"To get more information go to the log file at {LogFile.LogPath}");
                 Console.WriteLine();
-
             }
+            Console.WriteLine($"To get more information go to the log file at {LogFile.LogPath}");
             Console.WriteLine("-------------------------------------------------------------------------");
         }
     }

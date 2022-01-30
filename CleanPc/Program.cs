@@ -26,8 +26,8 @@ namespace CleanPc
             string prefetch = @"C:\Windows\Prefetch";
             List<Temporary> temporaries; //= new List<Temporary>()
 
-            //string[] paths = {Temp, PercentTemp, prefetch };
-            string[] paths = { PercentTemp};
+            string[] paths = {Temp, PercentTemp, prefetch };
+            //string[] paths = { Temp, PercentTemp };
 
             if (File.Exists(LogFile.LogPath)) File.Delete(LogFile.LogPath);
 
@@ -41,6 +41,7 @@ namespace CleanPc
             }
 
             log.WriteToConsole(temporaries);
+            log.WritesToLog(temporaries);
 
             Console.WriteLine("We're done, you've fired!");
         }
@@ -70,6 +71,8 @@ namespace CleanPc
             FileAttributes attr;
             int countDeletedFiles = 0;
             List<string> notDeleteFilesList = new List<string>();
+            List<string> DeleteFilesList = new List<string>();
+
             foreach (string item in files.tempList)
             {
                 try
@@ -79,15 +82,16 @@ namespace CleanPc
                     if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
                     {
                         Directory.Delete(item, true);
+                        DeleteFilesList.Add($"{item} was successfully deleted!");
                         countDeletedFiles++;
                     }
                     else
                     {
                         File.Delete(item);
+                        DeleteFilesList.Add($"{item} was successfully deleted!");
                         countDeletedFiles++;
                     }
-                    //deletedList.Add(($"{item} was deleted!"));
-                    log.WritesToLog(($"{item} was successfully deleted!"));
+                    //log.WritesToLog(($"{item} was successfully deleted!"));
                 }
                 catch (Exception ex)
                 {
@@ -98,14 +102,9 @@ namespace CleanPc
             }
             files.numOfDeletedFiles = countDeletedFiles;
             files.notDeletedList = notDeleteFilesList;
+            files.DeletedList = DeleteFilesList;
 
-            log.WritesToLog($"It was {files.numOfDeletedFiles} successfully deleted files!");
-            log.WritesToLog("Files that was not deleted: ");
-            foreach (var item in notDeleteFilesList)
-            {
-                log.WritesToLog(item);
-            }
-            log.WritesToLog("");
+            
         }
 
         static public List<string> GetTempFiles(string Path)

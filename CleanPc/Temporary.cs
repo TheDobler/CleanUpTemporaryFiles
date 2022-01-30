@@ -14,12 +14,14 @@ namespace CleanPc
         private string _tempPath;  //Temp;
         private List<string> _tempList = new List<string>(); //List of all files and folder in the temporary folder.
         private List<string> _notDeletedList = new List<string>();
+        private List<string> _DeletedList = new List<string>();
         private int _numOfDeletedFiles = 0;
 
         public string tempPath { get { return _tempPath; } }
         public List<string> tempList { get { return _tempList; } }
         public List<string> notDeletedList { get { return _notDeletedList; } set { _notDeletedList = value; } }
         public int numOfDeletedFiles { get { return _numOfDeletedFiles;} set { _numOfDeletedFiles = value; } }
+        public List<string> DeletedList { get { return _DeletedList; } set { _DeletedList = value; } }
 
         public Temporary(string TempPath, List<string> temporarList)
         {
