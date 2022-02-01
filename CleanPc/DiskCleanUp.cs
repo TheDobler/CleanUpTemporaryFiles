@@ -4,8 +4,6 @@ using System.Text;
 using System.Linq;
 using System.Diagnostics;
 
-
-
 namespace CleanPc
 {
     class DiskCleanUp
@@ -17,7 +15,6 @@ namespace CleanPc
             ExternalProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
             ExternalProcess.Start();
             ExternalProcess.WaitForExit();
-
 
         }
     }

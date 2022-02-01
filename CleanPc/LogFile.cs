@@ -7,7 +7,7 @@ namespace CleanPc
 {
     public class LogFile : IWriteToConsole
     {
-        public static string LogFilePath { get; set; } = @"C:\Users\Eirik Døble\Desktop\TestFolder\DiskCleanUpLog";
+        public static string LogFilePath { get; set; } = @"C:\DiskCleanUpLog";
         public static string LogFileName { get; set; } = "DiskCleanUpLogFile.txt";
 
         private static readonly string _LogPath = Path.Combine(LogFilePath, LogFileName);

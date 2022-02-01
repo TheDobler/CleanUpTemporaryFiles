@@ -17,7 +17,6 @@ namespace CleanPc
             string PercentTemp = $@"C:\Users\{GetUserName()}\AppData\Local\Temp";
             string prefetch = @"C:\Windows\Prefetch";
             List<Temporary> temporaries;
-
             string[] paths = {Temp, PercentTemp, prefetch };
             
 
@@ -35,7 +34,41 @@ namespace CleanPc
             log.WriteToConsole(temporaries);
             log.WritesToLog(temporaries);
 
-            Console.WriteLine("We're done, you've fired!");
+            Console.WriteLine("\nDo you want to run Disk Cleanup? (yes/no)");
+            string diskCleanup = Console.ReadLine();
+            if (diskCleanup.ToLower() == "yes")
+            {
+                DiskCleanUp cleanUp = new DiskCleanUp();
+                cleanUp.open();
+                log.WritesToLog("Disk Cleanup was run.");
+            }
+            else
+            {
+                log.WritesToLog("Disk Cleanup was not running.");
+            }
+
+
+
+            Console.WriteLine("\nDo you want to restart your computer? (yes/no)");
+            string sRestart = Console.ReadLine();
+            if (sRestart.ToLower() == "yes")
+            {
+                Console.WriteLine("After the reboot, the computer is ready for use. Let's take a restart!");
+                log.WritesToLog("A restart was performed.");
+                restartComputer();
+
+            }
+            else
+            {
+                Console.WriteLine("Your computer is ready!");
+                log.WritesToLog("No restart was performed.");
+
+            }
+        }
+
+        static void restartComputer()
+        {
+            Process.Start("shutdown","/r /t 5"); // the argument /r is to restart the computer and /t is Right now!
         }
 
         static List<Temporary> GetTemporary(string [] pathToFiles) 
