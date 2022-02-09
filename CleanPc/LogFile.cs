@@ -41,7 +41,6 @@ namespace CleanPc
                 File.AppendAllText(LogPath, textString);
                 return;
             }
-
             FileStream fs = new FileStream(LogPath, FileMode.OpenOrCreate, FileAccess.Write);
             StreamWriter sw = new StreamWriter(fs);
             sw.WriteLine(text);
@@ -63,7 +62,7 @@ namespace CleanPc
                 {
                     int count = 1;
                     sb.AppendLine(tempText[i].tempPath);
-                    if (tempText[i].DeletedList.Count == 0 | tempText[i].DeletedList == null)
+                    if ((tempText[i].DeletedList.Count == 0 | tempText[i].DeletedList == null) & tempText[i].notDeletedList.Count != 0)
                     {
                         sb.AppendLine("No files were deleted! ");
                     }
@@ -76,12 +75,12 @@ namespace CleanPc
                             sb.AppendLine(count + " " + deleted);
                             count++;
                         }
-                        
                     }
                     
                     count = 1;
-                    if (tempText[i].notDeletedList.Count == 0 | tempText[i].notDeletedList == null)
+                    if ((tempText[i].notDeletedList.Count == 0 | tempText[i].notDeletedList == null) & tempText[i].DeletedList.Count != 0)
                     {
+
                         sb.AppendLine("All files were deleted!!");
                     }
                     else
@@ -99,7 +98,6 @@ namespace CleanPc
                     sb.Clear();
                 }
             }
-            
         }
 
         public void WriteToConsole(List<Temporary> data)

@@ -8,17 +8,16 @@ namespace CleanPc
 {
     class Program
     {
-        
         static void Main(string[] args)
         {
-
+            DiskCleanUp cleanUp = new DiskCleanUp();
             LogFile log = new LogFile();
+
             string Temp = @"C:\Windows\Temp";
             string PercentTemp = $@"C:\Users\{GetUserName()}\AppData\Local\Temp";
             string prefetch = @"C:\Windows\Prefetch";
             List<Temporary> temporaries;
-            string[] paths = {Temp, PercentTemp, prefetch };
-            
+            string[] paths = { Temp, PercentTemp, prefetch };
 
             if (File.Exists(LogFile.LogPath)) File.Delete(LogFile.LogPath);
 
@@ -33,42 +32,62 @@ namespace CleanPc
 
             log.WriteToConsole(temporaries);
             log.WritesToLog(temporaries);
+        repeat:
+            if (cleanUp.Sageset())
+            { 
+                Console.WriteLine("\nDo you want to run Disk Cleanup? (yes/no)");
+                string diskCleanup = Console.ReadLine();
+                if (diskCleanup.ToLower() == "yes")
+                {
+                    Console.WriteLine("Do you want to run Disk CleanUp automatically? (yes/no)");
+                    diskCleanup = Console.ReadLine();
+                    if (diskCleanup.ToLower() == "yes")
+                    {
+                        cleanUp.AutoRun();
+                        log.WritesToLog("Disk Cleanup was run automatically.");
+                    }
+                    else
+                    {
+                        cleanUp.ChangeFolderThenRun();
+                        log.WritesToLog("Disk Cleanup was run, but some parameters were changed.");
+                    }
+                }
+                else
+                {
+                    log.WritesToLog("Disk Cleanup was not running.");
+                }
 
-            Console.WriteLine("\nDo you want to run Disk Cleanup? (yes/no)");
-            string diskCleanup = Console.ReadLine();
-            if (diskCleanup.ToLower() == "yes")
-            {
-                DiskCleanUp cleanUp = new DiskCleanUp();
-                cleanUp.open();
-                log.WritesToLog("Disk Cleanup was run.");
+                Console.WriteLine("\nDo you want to restart your computer? (yes/no)");
+                string sRestart = Console.ReadLine();
+                if (sRestart.ToLower() == "yes")
+                {
+                    Console.WriteLine("After the reboot, the computer is ready for use. Let's take a restart!");
+                    log.WritesToLog("A restart was performed.");
+                    restartComputer();
+
+                }
+                else
+                {
+                    Console.WriteLine("Your computer is ready!");
+                    log.WritesToLog("No restart was performed.");
+
+                }
             }
             else
             {
-                log.WritesToLog("Disk Cleanup was not running.");
-            }
-
-
-
-            Console.WriteLine("\nDo you want to restart your computer? (yes/no)");
-            string sRestart = Console.ReadLine();
-            if (sRestart.ToLower() == "yes")
-            {
-                Console.WriteLine("After the reboot, the computer is ready for use. Let's take a restart!");
-                log.WritesToLog("A restart was performed.");
-                restartComputer();
-
-            }
-            else
-            {
-                Console.WriteLine("Your computer is ready!");
-                log.WritesToLog("No restart was performed.");
-
+                Console.WriteLine("\nDo you want to select which files to delete when running DiskCleanup? (yes/no)");
+                string SelectFiles = Console.ReadLine();
+                if (SelectFiles.ToLower() == "yes")
+                {
+                    cleanUp.SetSageset();
+                    goto repeat;
+                }
             }
         }
 
         static void restartComputer()
         {
-            Process.Start("shutdown","/r /t 5"); // the argument /r is to restart the computer and /t is Right now!
+            Process.Start("shutdown","/r /t 5000"); // the argument /r is to restart the computer and /t is Right now!
         }
 
         static List<Temporary> GetTemporary(string [] pathToFiles) 
