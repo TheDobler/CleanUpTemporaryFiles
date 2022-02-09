@@ -87,7 +87,7 @@ namespace CleanPc
 
         static void restartComputer()
         {
-            Process.Start("shutdown","/r /t 5000"); // the argument /r is to restart the computer and /t is Right now!
+            Process.Start("shutdown","/r /t 60"); // the argument /r is to restart the computer and /t is time delay in seconds!
         }
 
         static List<Temporary> GetTemporary(string [] pathToFiles) 
